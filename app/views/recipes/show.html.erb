@@ -1,0 +1,61 @@
+<%if @recipe.nil? %>
+  <h3><%="Recipe ID: #{param[:id]}"%></h3>
+  <%= render '/layouts/shared/recipe_not_found' %>
+<%else%>
+<div class="row">
+<header class="container">
+  <nav class="navbar navbar-default">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Back", recipes_path , class: "btn btn-default" %></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "Back", recipes_path , class: "btn btn-default" %></li>
+      </ul>
+  </nav>
+</header>
+
+  <div class="row">
+    <div class="text-center">
+      <div class="product-top text-center">
+        <h1><%= @recipe&.title %></h1>
+        <p><%= @recipe&.description %></p>
+     </div>
+    </div>
+    <div class="product-bottom text-center">
+      <%=link_to recipe_path(@recipe.id) do %>
+        <%= image_tag get_recipe_url(@recipe.photo.url), class: 'responsive img-rounded' %>
+      <% end %>
+    </div>
+
+  <div class="container">
+    <% if @recipe&.fields[:tags] %>
+      <div class="text-center">
+        <% @recipe.tags.each do |tag| %>
+          <a class="badge badge-secodary ">&nbsp; <%= tag.name %>&nbsp;</a>
+        <% end %>
+      </div>
+    <% end %>
+
+
+    <% if @recipe&.fields[:chef] %>
+      <div class="text-center">
+        <b>Chef Name : </b>    <%= @recipe&.chef&.name %>
+      </div>
+    <% end %>
+  </div>
+
+<% end %>
+
+<footer class="container">
+  <nav class="navbar navbar-default">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Back", recipes_path , class: "btn btn-default" %></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "Back", recipes_path , class: "btn btn-default" %></li>
+      </ul>
+  </nav>
+</footer>
+</div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MealPlan</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Khalid, Khalid Rauf, Ruby on Rails">
+    <meta name="keywords" content="Khalid, Khalid Rauf, Ruby on Rails">
+  </head>
+  <body>
+  <section class="container">
+    <div class="row">
+       <%= render '/shared/header' %>
+    </div>
+    <div class="row">
+
+          <div id="flash">
+            <% flash.each do |key, value| %>
+              <div class="flash alert <%= alert_class(key) %>"><%= value %></div>
+            <% end %>
+          </div>
+          <%= yield %>
+    </div>
+  </section>
+  </body>
+</html>

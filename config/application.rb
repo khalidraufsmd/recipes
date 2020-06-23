@@ -1,0 +1,35 @@
+require_relative 'boot'
+
+require 'rails/all'
+
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
+
+module CodingTaskWeb02
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.2
+
+    contentfull_env_file = File.join(Rails.root, 'config', 'contentful.yml')
+    YAML.load(File.open(contentfull_env_file)).each do |key, value|
+      ENV[key.to_s] = value
+    end
+
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
+
+    #config.before_configuration do
+    contentfull_env_file = File.join(Rails.root, 'config', 'contentful.yml')
+
+    YAML.load(File.open(contentfull_env_file)).each do |key, value|
+
+      ENV[key.to_s] = value
+
+    end if File.exists?(contentfull_env_file)
+    #end
+
+  end
+end
